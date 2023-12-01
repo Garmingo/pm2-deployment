@@ -4,9 +4,6 @@ branding:
   icon: "zap"
   color: "yellow"
 inputs:
-  build:  
-    required: false
-    default: 'false'
   host:
     description: "Remote host"
     required: true
@@ -55,7 +52,6 @@ runs:
         script: cd ${{ inputs.remote-path }} && npm ci 
 
     - name: Build your project
-      if: ${{ inputs.build == true }}
       uses: appleboy/ssh-action@v0.1.4 
       with:
         HOST: ${{ inputs.host }}
