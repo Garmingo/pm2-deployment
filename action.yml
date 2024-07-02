@@ -23,6 +23,10 @@ inputs:
   pm2-id:
       description: "PM2 ID or Name of the process"
       required: true
+  pm2-file-name:
+      description: "Name of the pm2 file"
+      required: false
+      default: "ecosystem.config.js"
 
 runs:
   using: "composite"
@@ -67,7 +71,7 @@ runs:
         USERNAME: ${{ inputs.username }}
         PORT: ${{ inputs.port }}
         PASSWORD: ${{ inputs.password }}
-        script: cd ${{ inputs.remote-path }} && pm2 reload ecosystem.config.js
+        script: cd ${{ inputs.remote-path }} && pm2 reload ${{ inputs.pm2-file-name }}
 
     - name: Reset number of restarts
       uses: appleboy/ssh-action@v0.1.4 
